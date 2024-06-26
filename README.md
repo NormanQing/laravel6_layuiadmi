@@ -21,3 +21,9 @@
  - 数据库迁移填充 php artisan migrate --seed
  - php artisan key:generate
  - 后台登录: host/backend root 123456
+
+## 示例
+- 用户
+![Image text](https://github.com/NormanQing/laravel6_layuiadmi/blob/master/public/show/1.png?raw=true)
+- 权限
+![Image text](https://github.com/NormanQing/laravel6_layuiadmi/blob/master/public/show/2.png?raw=true)
