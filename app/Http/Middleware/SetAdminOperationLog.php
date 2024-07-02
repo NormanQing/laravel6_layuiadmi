@@ -16,10 +16,9 @@ class SetAdminOperationLog extends Middleware
         $requestUri = trim($requestUri, '/');
         $urlArr = explode('/', $requestUri);
         if ($urlArr[0] == env('BACKEND_PREFIX', 'backend') && $request->user('backend')) {
-            $currentRouteName = $request->route()->getName(); // 当前登录的路由别名
-            if(!in_array($currentRouteName, [
-                'backend.login', // 登录不记录
-            ])){
+
+            if ($request->method() == 'POST') {
+                $currentRouteName = $request->route()->getName(); // 当前登录的路由别名
                 $parameter = json_encode($request->all());
                 $operation = new AdminOperationLog();
                 $operation->ip = $request->ip();
@@ -31,7 +30,6 @@ class SetAdminOperationLog extends Middleware
                 $operation->route = $currentRouteName;
                 $operation->save();
             }
-
         }
 
         return $next($request);
