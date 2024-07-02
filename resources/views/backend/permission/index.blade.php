@@ -110,6 +110,13 @@
                             fixed: 'left'
                         }
                         , {field: 'display_name', title: '菜单', fixed: 'left'}
+                        , {field: 'icon_class', title: '图标', align: 'center', templet: function(d){
+                                if(d.icon_type == 2){
+                                    return '<i class="'+d.icon_class+'"><i/>';
+                                }else{
+                                    return '<i class="layui-icon '+d.icon_class+'"><i/>';
+                                }
+                            }}
                         , {field: 'name', title: '权限'}
                         , {field: 'route', title: '路由'}
                         , {field: 'guard_name', title: 'guard_name'}
@@ -130,7 +137,7 @@
                                 , title: '添加子级'
                                 , content: '{{route("backend.permission.create")}}' + '?parent_id=' + data.id
                                 , maxmin: true
-                                , area: ['500px', '500px']
+                                , area: ['800px', '800px']
                                 , btnAlign: 'c'
                                 , btn: ['确定', '取消']
                                 , yes: function (index, layero) {
@@ -146,7 +153,7 @@
                                 , title: '编辑'
                                 , content: '{{route("backend.permission.edit", "id")}}'.replace("id", data.id)
                                 , maxmin: true
-                                , area: ['500px', '500px']
+                                , area: ['800px', '800px']
                                 , btnAlign: 'c'
                                 , btn: ['确定', '取消']
                                 , yes: function (index, layero) {

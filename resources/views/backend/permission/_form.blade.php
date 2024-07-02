@@ -30,15 +30,62 @@
 
     </div>
     <div class="layui-form-item">
-        <label for="" class="layui-form-label">路由name</label>
+        <label for="" class="layui-form-label">菜单</label>
         <div class="layui-input-block">
-            <input value="{{$data->route ?? ''}}" class="layui-input" type="text" name="route" lay-verify="required" placeholder="">
+            <input  lay-verify="required" type="radio" name="is_menu" value="1" title="是" @if(isset($data->is_menu) && $data->is_menu==1) checked @endif>
+            <div lay-radio>
+                <span style="color: blue;">是</span>
+            </div>
+            <input  lay-verify="required" type="radio" name="is_menu" value="2" title="否" @if(isset($data->is_menu) && $data->is_menu==2) checked @endif>
+            <div lay-radio>
+                <span style="color: pink;">否</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label for="" class="layui-form-label">图标类型</label>
+        <div class="layui-input-block">
+            <input  lay-verify="required" type="radio" name="icon_type" value="1" @if(isset($data->icon_type) && $data->icon_type==1) checked @endif  lay-filter="demo-radio-filter" />
+            <div lay-radio>
+                <span style="color: blue;">Layui</span>
+            </div>
+            <input  lay-verify="required" type="radio" name="icon_type" value="2" @if(isset($data->icon_type) && $data->icon_type==2) checked @endif  lay-filter="demo-radio-filter" />
+            <div lay-radio>
+                <span style="color: pink;">Font Awesome</span>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label for="" class="layui-form-label">图标</label>
+        <div class="layui-input-block">
+            <div class="layui-input-group">
+                <div class="layui-input-split layui-input-prefix icon-show">
+                    @if(isset($data->icon_type))
+                        @if($data->icon_type == 2)
+                            <i class="{{$data->icon_class}}"></i>
+                        @else
+                            <i class="layui-icon {{$data->icon_class}}"></i>
+                        @endif
+                    @endif
+                </div>
+                <input value="{{$data->icon_class ?? ''}}" class="layui-input" type="text" name="icon_class" lay-verify="required" placeholder="图标">
+                <div class="layui-input-split layui-input-suffix">
+                    <button type="button" class="layui-btn layui-bg-purple search-icon"><i class="layui-icon layui-icon-search" style="color:#fff"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label for="" class="layui-form-label">路由</label>
+        <div class="layui-input-block">
+            <input value="{{$data->route ?? ''}}" class="layui-input" type="text" name="route" placeholder="">
         </div>
     </div>
     <div class="layui-form-item">
         <label for="" class="layui-form-label">排序</label>
         <div class="layui-input-block">
-            <input value="{{$data->sort ?? ''}}" class="layui-input" type="text" name="sort" lay-verify="required" placeholder="">
+            <input value="{{$data->sort ?? 0}}" class="layui-input" type="text" name="sort" lay-verify="required" placeholder="">
         </div>
     </div>
 

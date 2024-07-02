@@ -27,6 +27,9 @@ Route::group(['middleware'=>'adminAuth:backend','prefix'=>'permission'],function
     Route::post('/destroy','PermissionController@destroy')->name('backend.permission.destroy');
 
 
+    Route::get('/icon','PermissionController@icon')->name('backend.permission.icon');
+
+
 });
 
 

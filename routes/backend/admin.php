@@ -20,7 +20,7 @@ Route::group(['middleware'=>'adminAuth:backend','prefix'=>'admin'],function (){
     Route::post('/store','AdminController@store')->name('backend.admin.store');
 
     Route::get('/{id}/edit','AdminController@edit')->name('backend.admin.edit');
-    Route::post('/{id}/update','AdminController@update')->name('backend.admin.update');
+    Route::post('/{id}/update','AdminController@profileUpdate')->name('backend.admin.update');
 
     Route::post('/destroy','AdminController@destroy')->name('backend.admin.destroy');
 
@@ -31,6 +31,13 @@ Route::group(['middleware'=>'adminAuth:backend','prefix'=>'admin'],function (){
     // 分配权限
     Route::get('/{id}/permission','AdminController@permission')->name('backend.admin.permission');
     Route::post('/{id}/assignPermission','AdminController@assignPermission')->name('backend.admin.assignPermission');
+
+    Route::get('/profile','AdminController@profile')->name('backend.admin.profile');
+//    Route::post('/{$id}/profileUpdate','AdminController@profileUpdate')->name('backend.admin.profileUpdate');
+
+    Route::post('/{id}/ddd','AdminController@profileUpdate')->name('backend.admin.ddd');
+
+
 });
 
 

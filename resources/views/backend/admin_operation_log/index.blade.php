@@ -76,7 +76,7 @@
 
                 table.render({
                     elem: "#table-list"
-                    , url: "{{route('backend.admin.operation_log.list')}}" //
+                    , url: "{{route('backend.admin.log.list')}}" //
                     , defaultToolbar: ['filter', 'exports', 'print', {
                         title: '帮助'
                         , layEvent: 'LAYTABLE_TIPS'

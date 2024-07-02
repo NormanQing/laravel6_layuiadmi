@@ -1,10 +1,10 @@
 @extends('backend.noadmincss')
 
 @section('content')
-   <style>
-    .lever-2{
-    display: flex;
-    }
+    <style>
+        .lever-2{
+            display: flex;
+        }
     </style>
     <div class="layui-btn-container">
         <button type="button" class="layui-btn layui-btn-sm" lay-on="distribution">分配权限</button>

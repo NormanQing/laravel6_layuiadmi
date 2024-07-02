@@ -54,6 +54,55 @@
                     });
                     return false;
                 });
+
+                $('.search-icon').on('click',function(){
+                    layer.open({
+                        type: 2
+                        , content: '{{route('backend.permission.icon')}}'
+                        , maxmin: true
+                        , area: ['700px', '500px']
+                        , btnAlign: 'c'
+                        // , btn: ['确定', '取消']
+                        // , yes: function (index, layero) {
+                        //     //点击确认触发 iframe 内容中的按钮提交
+                        //     var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-submit");
+                        //     submit.click();
+                        // }
+                    });
+                });
+
+                $('input[name="icon_class"]').on('change',function(){
+                    var val = $(this).val();
+                    var iconType = $('input[name="icon_type"]:checked').val();
+                    if(!iconType){
+                        layer.msg('请选择图标的类型-然后重新输入');
+                        return false;
+                    }
+                    var iconStr = '';
+                    if(iconType == 2){
+                        iconStr = '<i class="'+ val +'"></i>';
+                    }else{
+                        iconStr = '<i class="layui-icon '+ val +'"></i>';
+                    }
+                    $(".icon-show").html(iconStr);
+                });
+
+                // radio 事件
+                form.on('radio(demo-radio-filter)', function(data){
+                    var elem = data.elem; // 获得 radio 原始 DOM 对象
+                    var checked = elem.checked; // 获得 radio 选中状态
+                    var value = elem.value; // 获得 radio 值
+                    var othis = data.othis; // 获得 radio 元素被替换后的 jQuery 对象
+
+                    var iconClass =  $('input[name="icon_class"]').val();
+                    var iconStr = '';
+                    if(value == 2){
+                        iconStr = '<i class="'+ iconClass +'"></i>';
+                    }else{
+                        iconStr = '<i class="layui-icon '+ iconClass +'"></i>';
+                    }
+                    $(".icon-show").html(iconStr);
+                });
             })
 
         </script>

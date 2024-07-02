@@ -13,8 +13,8 @@
 
 Route::group(['middleware'=>'adminAuth:backend','prefix'=>'admin_operation_log'],function (){
     //
-    Route::get('', 'AdminOperationLogController@index')->name('backend.admin.operation_log');
-    Route::get('/list', 'AdminOperationLogController@list')->name('backend.admin.operation_log.list');
+    Route::get('', 'AdminOperationLogController@index')->name('backend.admin.log');
+    Route::get('/list', 'AdminOperationLogController@list')->name('backend.admin.log.list');
 
 });
 

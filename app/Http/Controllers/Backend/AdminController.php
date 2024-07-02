@@ -7,6 +7,7 @@ use App\Http\Requests\AdminUpdateRequest;
 use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends BackendBaseController
 {
@@ -220,5 +221,47 @@ class AdminController extends BackendBaseController
         }
         $admin->syncPermissions($permissions);
         return $this->success('操作成功');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return  \Illuminate\View\View;
+     *
+     */
+    public function profile()
+    {
+        $admin = Auth::guard('backend')->user();
+        return view('backend.admin.profile', compact('admin'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     *
+     */
+    public function profileUpdate(AdminUpdateRequest $request, $id)
+    {
+        $data = $request->all();
+
+        try {
+
+            $admin = Admin::query()->findOrFail($id);
+            if ($data['password']) {
+                $admin->password = bcrypt($data['password']);
+            }
+
+            $admin->nickname = $data['nickname'];
+            $admin->phone = $data['phone'];
+            $admin->email = $data['email'];
+            $admin->save();
+            return $this->success('操作成功');
+        } catch (\Exception $e) {
+            return $this->error('操作失败' . $e->getMessage());
+        }
     }
 }

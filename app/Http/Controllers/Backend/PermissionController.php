@@ -93,6 +93,10 @@ class PermissionController extends BackendBaseController
             'guard_name' => 'backend',
             'sort' => $requestData['sort'],
             'parent_id' => $requestData['parent_id'],
+            'is_menu' => $requestData['is_menu'],
+            'icon_type' => $requestData['icon_type'],
+            'icon_class' => $requestData['icon_class'],
+
         ];
         if (Permission::create($data)) {
             return $this->success('操作成功');
@@ -138,6 +142,9 @@ class PermissionController extends BackendBaseController
             $admin->display_name = $data['display_name'];
             $admin->route = $data['route'];
             $admin->sort = $data['sort'];
+            $admin->is_menu = $data['is_menu'];
+            $admin->icon_type = $data['icon_type'];
+            $admin->icon_class = $data['icon_class'];
             $admin->save();
             return $this->success('操作成功');
         } catch (\Exception $e) {
@@ -164,6 +171,18 @@ class PermissionController extends BackendBaseController
             return $this->success('操作成功');
         }
         return $this->error('操作失败');
-
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return  \Illuminate\View\View;
+     *
+     */
+    public function icon()
+    {
+        return view('backend.permission.icon');
+    }
+
 }

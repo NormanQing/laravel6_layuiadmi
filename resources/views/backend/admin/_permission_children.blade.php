@@ -15,9 +15,9 @@
 
     @if(isset($permission['children']))
         <ul class="lever-{{$permission['lever']}}" style="margin-left: {{$permission['lever'] *8}}px;margin-top:10px;">
-        @foreach($permission['children'] as $child)
-            @include('backend.admin._permission_children',['permission'=>$child, 'parentId'=> $parentId.'-'.$child['id']])
-        @endforeach
+            @foreach($permission['children'] as $child)
+                @include('backend.admin._permission_children',['permission'=>$child, 'parentId'=> $parentId.'-'.$child['id']])
+            @endforeach
         </ul>
     @endif
 </li>

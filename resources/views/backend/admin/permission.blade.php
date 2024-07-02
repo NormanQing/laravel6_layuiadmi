@@ -14,9 +14,9 @@
     <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"
          style="padding: 20px 30px 0 0;">
         <ul>
-        @foreach($permissions as $item)
-            @include('backend.admin._permission_children', ['permission' => $item, 'parentId'=>$item['id']])
-        @endforeach
+            @foreach($permissions as $item)
+                @include('backend.admin._permission_children', ['permission' => $item, 'parentId'=>$item['id']])
+            @endforeach
         </ul>
     </div>
 @endsection

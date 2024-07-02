@@ -48,36 +48,36 @@ class InitDataSeeder extends Seeder
             $permission = require_once($file);
 
             // 生成一级权限
-            $p1Val = array_intersect_key($permission, array_flip(['name', 'display_name', 'route', 'icon_class']));
+            $p1Val = array_intersect_key($permission, array_flip(['name', 'display_name', 'route', 'icon_class', 'icon_type','is_menu']));
             $p1Val['guard_name'] = 'backend';
 
             $p1 = \App\Models\Permission::create($p1Val);
 
             $superRole->givePermissionTo($p1); // 给角色赋予权限
-            $admin->givePermissionTo($p1); // 给角色赋予权限
+//            $admin->givePermissionTo($p1); // 给角色赋予权限
 
             // 生成二级权限
             if (isset($permission['child']) && !empty($permission['child'])) {
                 foreach ($permission['child'] as $child) {
-                    $p2Val = array_intersect_key($child, array_flip(['name', 'display_name', 'route', 'icon']));
+                    $p2Val = array_intersect_key($child, array_flip(['name', 'display_name', 'route', 'icon_class', 'icon_type','is_menu']));
                     $p2Val['parent_id'] = $p1->id;
                     $p2Val['guard_name'] = 'backend';
 
                     $p2 = \App\Models\Permission::create($p2Val);
 
                     $superRole->givePermissionTo($p2); // 给角色赋予权限
-                    $admin->givePermissionTo($p2); // 给用户赋予权限
+//                    $admin->givePermissionTo($p2); // 给用户赋予权限
 
                     if (isset($child['child']) && !empty($child['child'])) {
                         // 生成三级权限
                         foreach ($child['child'] as $sun) {
-                            $p3Val = array_intersect_key($sun, array_flip(['name', 'display_name', 'route', 'icon']));
+                            $p3Val = array_intersect_key($sun, array_flip(['name', 'display_name', 'route', 'icon_class']));
                             $p3Val['parent_id'] = $p2->id;
                             $p3Val['guard_name'] = 'backend';
                             $p3 = \App\Models\Permission::create($p3Val);
 
                             $superRole->givePermissionTo($p3);// 给角色赋予权限
-                            $admin->givePermissionTo($p2); // 给用户赋予权限
+//                            $admin->givePermissionTo($p2); // 给用户赋予权限
                         }
                     }
 
